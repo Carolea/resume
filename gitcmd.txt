@@ -1,0 +1,11 @@
+$ git init
+$ touch .gitignore
+$ git remote add origin https://github.com/Carolea/resume.git
+
+$ git add .
+$ git commit -am'update'
+$ git status
+
+https://gumroad.com/l/HskiT
+https://github.com/designerdada/flat-mini-portfolio
+https://www.behance.net/gallery/28527567/ZELDA-Typeface-(20)
