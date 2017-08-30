@@ -1,0 +1,48 @@
+{% extends "layout_front.html.twig" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+<div id="main">
+	<h2>Contact me</h2>
+	<p>For queries about anything on this website, or for job quotations, please contact me using the contact form below or via <a href="mailto:email@email.com">email</a>.</p>
+
+	<form action="#" method="post">
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		<div>
+			{{ form_label(form.name, 'Your name:') }}<br />
+
+			<div class='form-input'>
+				{{ form_widget(form.name) }}
+				{{ form_errors(form.name) }}
+			</div>
+		</div>
+
+		<div>
+			{{ form_label(form.email, 'Your Email:') }}<br />
+
+			<div class='form-input'>
+				{{ form_errors(form.email) }}
+				{{ form_widget(form.email) }}
+			</div>
+		</div>
+
+		<div>
+			{{ form_label(form.message, 'Your Message:') }}<br />
+
+			<div class='form-textarea'>
+				{{ form_errors(form.message) }}
+				{{ form_widget(form.message) }}
+			</div>
+		</div>
+
+		<input type="submit" name="submit" />
+		{{ form_end(form) }}
+	</form>
+</div>
+
+
+{% endblock %}
