@@ -1,102 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    
+  <head>
 
-   <!--encodage de la page   -->
+    <!--encodage de la page   -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <!--pour internet explorer: s'assurer qu'il utilise la dernière version du moteur de rendu -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!--affichage du site sans zoom, initialisé à 100%    -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
+
     <!-- meta de référencement-->
     <meta name="description" content="Portfolio en ligne">
-    <meta name="author" content="Sk0tia">
-    <meta name="keywords" content="responsive, bootstrap, portfolio">
-    
-    <link rel="shortcut icon" href="../web/images/favicon.ico">
-    
-   <!-- titre de la page   -->
-    <title>Carolea - {% block title %}{% endblock %}</title>
-    
+    <meta name="author" content="Carolea">
+    <meta name="keywords" content="responsive, bootstrap, silex, portfolio">
+
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
+
+    <!-- titre de la page   -->
+    <title>Carolea -
+      {% block title %}{% endblock %}
+    </title>
+
     <!-- styles -->
-    <!-- bootstrap CSS    -->  
+    <!-- bootstrap CSS    -->
     <link href="{{ asset('/lib/bootstrap-front/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/lib/bootstrap-front/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- style ajouté -->
     <link href="{{ asset('/css/accueil.css') }}" rel="stylesheet">
-    
-    
-    <!-- Font -->    
-<!--    <link href="{{ asset('/font/css/fontello.css') }}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>-->
-    
-    
-</head>
 
-<body>
-   
+    <!--fancybox-->
+    <link rel="stylesheet" type="text/css" href="web/css/jquery.fancybox.css" media="screen"/>
+
+  </head>
+
+  <body>
+
     <!-------Animation de transition de page---------->
-    <div class="menu active">
-      <div class="menu-up"> </div>
+    <div class="menu activ">
+      <div class="menu-up"></div>
       <div class="menu-down"></div>
-        
-       
-       <!----------------->
-        <div class="site-wrapper">
+      <!----------------->
 
-          <div class="site-wrapper-inner">
-
-            <div class="cover-container">
-
-              <div class="masthead clearfix">
-                <div class="inner">
-                  <h3 class="masthead-brand">Carolea</h3>
-                  <nav class="nav nav-masthead">
-
-                    <a class="nav-link button " href="{{ path('home') }}">Accueil</a>
-                    <a class="nav-link button" href="{{ path('loisir') }}">Compétences</a>
-                    <a class="nav-link button" href="{{ path('portfolio') }}">Portfolio</a>
-                    <a class="nav-link button" href="{{ path('contact') }}">Contact</a>
-                  </nav>
-                </div>
+      <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+          <div class="cover-container">
+            <div class="masthead clearfix">
+              <div class="inner">
+                <h3 class="masthead-brand" href="{{ path('home') }}">Carolea</h3>
+                <nav class="nav nav-masthead">
+                  <li {% if active == 'home' %} class="active" {% endif %}><a class="nav-link button" href="{{ path('home') }}">Accueil </a></li>
+                  <li {% if active == 'loisir' %} class="active" {% endif %}><a class="nav-link button" href="{{ path('loisir') }}"> Compétences </a></li>
+                  <li {% if active == 'portfolio' %} class="active" {% endif %}><a class="nav-link button" href="{{ path('portfolio') }}"> Portfolio </a></li>
+                  <li {% if active == 'contact' %} class="active"{% endif %} ><a class="nav-link button" href="{{ path('contact') }}"> Contact </a></li>
+                </nav>
               </div>
-
-
-    {% block content %}
-    {% endblock %} 
-    
-
-              <div class="mastfoot">
-                <div class="inner">
-                  <p ><a href="http://dzyngiri.com">Mentions Légales</a> Copyright © 2017.</p>
-
-                </div>
-              </div>
-
-
             </div>
 
+            {% block content %}{% endblock %}
+
+            <div class="mastfoot">
+              <div class="inner">
+                <p >
+                  <a href="{{ path('mentions') }}">Mentions Légales</a>
+                  2017 Tous droits réservés.</p>
+              </div>
+            </div>
           </div>
 
         </div>
-
+      </div>
     </div>
-    
+
     <!-- Scripts -->
     <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/lib/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/lib/bootstrap/js/diagonal.js') }}"></script>
-    
-   <script src="{{ asset('lib/bootstrap/js/console.image.min.js') }}"></script>
-   <script>
-    /*console.meme("Annnnd", "no bug.", "Aaand It's Gone", 400, 300);*/
+
+    <script type="text/javascript" src="web/js/jquery.fancybox.js"></script>
+
+    <script src="{{ asset('lib/bootstrap/js/console.image.min.js') }}"></script>
+    <script>
+      /*console.meme("Annnnd", "no bug.", "Aaand It's Gone", 400, 300);*/
     </script>
 
-
-</body>
+  </body>
 </html>

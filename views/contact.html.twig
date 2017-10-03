@@ -4,45 +4,41 @@
 
 {% block content %}
 
-<div id="main">
-	<h2>Contact me</h2>
-	<p>For queries about anything on this website, or for job quotations, please contact me using the contact form below or via <a href="mailto:email@email.com">email</a>.</p>
+  <h2>Pour me contacter</h2>
+  <p>Rien de plus simple.</p>
 
-	<form action="#" method="post">
-		{{ form_start(form) }}
-		{{ form_errors(form) }}
+  {% if contactForm %}
+    {{ form_start(contactForm) }}
 
-		<div>
-			{{ form_label(form.name, 'Your name:') }}<br />
+    <div>
+      <!--<label>Nom : </label>-->
+      {{ form_label(contactForm.nom, 'Nom:') }}<br/>
+      <div class='form-input'>
+        {{ form_errors(contactForm.nom) }}
+        {{ form_widget(contactForm.nom) }}
+      </div>
+    </div>
 
-			<div class='form-input'>
-				{{ form_widget(form.name) }}
-				{{ form_errors(form.name) }}
-			</div>
-		</div>
+    <div>
+      <!--<label>Email : </label>-->
+      {{ form_label(contactForm.email, 'Email:') }}<br/>
+      <div class='form-input'>
+        {{ form_errors(contactForm.email) }}
+        {{ form_widget(contactForm.email) }}
+      </div>
+    </div>
 
-		<div>
-			{{ form_label(form.email, 'Your Email:') }}<br />
+    <div>
+      <!--	<label>Message : </label>-->
+      {{ form_label(contactForm.message, 'Message:') }}<br/>
+      <div class='form-textarea'>
+        {{ form_errors(contactForm.message) }}
+        {{ form_widget(contactForm.message) }}
+      </div>
+    </div>
 
-			<div class='form-input'>
-				{{ form_errors(form.email) }}
-				{{ form_widget(form.email) }}
-			</div>
-		</div>
-
-		<div>
-			{{ form_label(form.message, 'Your Message:') }}<br />
-
-			<div class='form-textarea'>
-				{{ form_errors(form.message) }}
-				{{ form_widget(form.message) }}
-			</div>
-		</div>
-
-		<input type="submit" name="submit" />
-		{{ form_end(form) }}
-	</form>
-</div>
-
+    <input type="submit" value="Envoyer l'email"/>
+    {{ form_end(contactForm) }}
+  {% endif %}
 
 {% endblock %}

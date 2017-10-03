@@ -147,20 +147,27 @@
                   <th>Date</th>
                   <th>Descriptif</th>
                   <th>Image</th>
+                  <th>thumbs</th>
                   <th></th>  <!-- Actions column -->
                 </tr>
               </thead>
               {% for portfolio in portfolios %}
                 <tr>
-                  <td>{{ portfolio.id }}</td>
-                  <td><a class="articleTitle" href="{{ path('article', { 'id': portfolio.id }) }}">{{ portfolio.name }}</a></td>
-                  <td>{{ portfolio.lieu }}</td>
-                  <td>{{ portfolio.date }}</td>
-                  <td>{{ portfolio.descriptif | truncate(60) }}</td>
-                  <td>
-                    <div class="img-thumbnail">
-                      <img src="{{ portfolio.img }}" alt="{{ portfolio.name }}"> </td>
-                    </div>
+                    <td>{{ portfolio.id }}</td>
+                    <td><a class="articleTitle" href="{{ path('article', { 'id': portfolio.id }) }}">{{ portfolio.name }}</a></td>
+                    <td>{{ portfolio.lieu }}</td>
+                    <td>{{ portfolio.date }}</td>
+                    <td>{{ portfolio.descriptif | truncate(60) }}</td>
+                    <td>
+                        <div class="img-thumbnail">
+                          <img src="{{ portfolio.img }}" alt="{{ portfolio.name }}"> 
+                        </div>
+                    </td>
+                    <td>
+                        <div class="img-thumbnail">
+                          <img src="{{ portfolio.thumb }}" alt="{{ portfolio.name }}"> 
+                        </div>
+                    </td>
                   <td>
                     <a href="{{ path('admin_portfolio_edit', { 'id': portfolio.id }) }}" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
                     <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#portfolioDialog{{ portfolio.id }}"><span class="glyphicon glyphicon-remove"></span>

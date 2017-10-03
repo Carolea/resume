@@ -3,43 +3,38 @@
 {% block title %}Portfolio{% endblock %}
 
 {% block content %}
-<!--  <h1>Portfolio</h1>-->
+
+
+<div class="accordion">
+<ul>
   {% for portfolio in portfolios %}
-   
-<div id="all">
-  <div id="allcontent">
-      <div id="maincontent">
-	        <div class="portfolio">
-	            <img src="http://www.claudiogomboli.com/lab/gallery/imgs/ecomm.jpg" alt="Portfolio img"><br>
-	            <span class="txt">Portfolio . Site CV.</span>
-	            <div class="ombra"></div>
-	        </div>
-	        <div class="portfolio">
-	            <img src="http://www.claudiogomboli.com/lab/gallery/imgs/speaker.jpg" alt="Portfolio img"><br>
-	            <span class="txt">Projet Collectif . Declic.</span>
-	            <div class="ombra"></div>
-	        </div>
-	        <div class="portfolio">
-	            <img src="http://www.claudiogomboli.com/lab/gallery/imgs/graph01.jpg" alt="Portfolio img"><br>
-	            <span class="txt">Poster . Laperquisa Cinema . <a href="http://cargocollective.com/gomboli/Laperquisa-Cinema-Screening-Posters" target="_blank" title="see more">see more</a>.</span>
-	            <div class="ombra"></div>
-	        </div>
-	        <div class="portfolio">
-	            <img src="http://www.claudiogomboli.com/lab/gallery/imgs/web01.jpg" alt="Portfolio img"><br>
-	            <span class="txt">Alfa Romeo <a href="http://www.alfaromeo.com/carconfigurator/IT/159/index.html" target="_blank" title="Alfa Romeo">Car Configurator</a> . <a href="http://wedoo.it" target="_blank" title="WEDOO">@Wedoo</a>.</span>
-	            <div class="ombra"></div>
-	        </div>
-	        <div class="portfolio">
-	            <img src="http://www.claudiogomboli.com/lab/gallery/imgs/illu01.jpg" alt="Portfolio img"><br>
-	            <span class="txt">Mac Book Air . Keynote Illustration</span>
-	            <div class="ombra"></div>
-	        </div>
-	    </div>
-	  
-	</div>
-</div>
-   
-   
+
+  <a href="#">
+        <li style="background-image: url('{{ portfolio.img }}');">
+          <div>
+            <div class="accordion_item_inf">
+              <p class="accordion_item_inf_title">{{ portfolio.name }}</p>
+              <p class="accordion_item_inf_text">{{ portfolio.descriptif }}</p>
+            </div>
+          </div>
+        </li>
+      </a>
+
+<!--    <article>
+        <h2><a class="articleTitle" href="{{ path('portfolio', { 'id': portfolio.id }) }}">{{ portfolio.name }}</a></h2>
+        <p>{{ portfolio.descriptif }}</p>
+        <img src="{{ portfolio.img }}" alt="">
+    </article>-->
+
+    <!-- Works container -->
+        <!-- <li>
+          <div><a class="fancybox-thumb" rel="fancybox-thumb" href="{{ portfolio.img }}" title="{{ portfolio.name }}"><img src="{{ portfolio.thumb }}" /></a></div>
+        </li> -->
+      <!--Dummy images by The Fox And King :: http://dribbble.com/snootyfox-->
+    <!--END: Work container-->
+
   {% endfor %}
+      </ul>
+    </div>
 
 {% endblock %}
