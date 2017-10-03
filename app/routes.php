@@ -2,6 +2,8 @@
 // ===================
 //  HOME et ADMIN PAGE
 
+use Symfony\Component\HttpFoundation\Request;
+
 $app->get('/', "MicroCMS\Controller\HomeController::indexAction")
 ->bind('home');
 
@@ -9,10 +11,13 @@ $app->get('/', "MicroCMS\Controller\HomeController::indexAction")
 $app->get('/admin', "MicroCMS\Controller\AdminController::indexAction")
 ->bind('admin');
 
-// ======================================
-// CONCERNE CONTACT
-$app->get('/contact', "MicroCMS\Controller\ContactController::contactAction")
-->bind('contact');
+// ===================
+//  NAV
+
+// navigation active page
+$app->before(function ($request) use ($app) {
+  $app['twig']->addGlobal('active', $request->get("_route"));
+});
 
 // ======================================
 // CONCERNE ARTICLE
@@ -212,3 +217,54 @@ $app->match('/admin/comment/{id}/edit', "MicroCMS\Controller\AdminController::ed
 // Remove a comment
 $app->get('/admin/comment/{id}/delete', "MicroCMS\Controller\AdminController::deleteCommentAction")
 ->bind('admin_comment_delete');
+
+
+
+// ======================================
+// CONCERNE CONTACT
+
+$app -> match('/contact', function(Request $request) use ($app){
+	$contactForm = $app['form.factory'] -> create(MicroCMS\Form\Type\ContactType::class);
+
+	$contactForm -> handleRequest($request);
+	if($contactForm -> isSubmitted() && $contactForm -> isValid()){
+
+        echo "<meta http-equiv='refresh' content='0'>";
+
+		$data = $contactForm->getData();
+		extract($data);
+
+
+		$header = "From: $email \r\n";
+		$header .= "Reply-To: $email \r\n";
+		$header .= "MIME-Version: 1.0 \r\n";
+		$header .= "Content-type: text/html; charset=iso-8859-1 \r\n";
+		$header .= "X-Mailer: PHP/" . phpversion();
+
+        $message = sprintf('Bonjour Carole, vous avez reçu un message via le formulaire de contact de votre site cv.
+        Message: %s.
+        Il a été envoyé par %s joignable a cette adresse %s.',
+
+        $data['message'], $data['nom'], $data['email']);
+
+		mail('carole.ambert@lepoles.com', $sujet, $message, $header);
+
+	}
+	$contactFormView = $contactForm -> createView();
+
+	$params = array(
+		'title' => 'Inscription',
+		'contactForm' => $contactFormView
+	);
+
+	return $app['twig'] -> render('contact.html.twig' ,$params);
+
+}) -> bind('contact');
+
+// ======================================
+// CONCERNE MENTIONS LEGALES
+
+$app->match('/mentionslegales', function() use($app) {
+	return $app['twig']->render('mentionslegales.html.twig');
+})
+->bind('mentions');

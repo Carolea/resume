@@ -8,9 +8,9 @@ use MicroCMS\Domain\Portfolio;
 class PortfolioDAO extends DAO
 {
     /**
-     * Return a list of all articles, sorted by date (most recent first).
+     * Return all entry of portfolio, sorted by id.
      *
-     * @return array A list of all articles.
+     * @return array A list of all entry.
      */
     public function findAll() {
         $sql = "select * from t_portfolio order by port_id asc";
@@ -25,7 +25,7 @@ class PortfolioDAO extends DAO
         return $portfolios;
     }
     /**
-     * Returns an article matching the supplied id.
+     * Returns an entry matching the supplied id.
      *
      * @param integer $id The article id.
      *
@@ -38,13 +38,13 @@ class PortfolioDAO extends DAO
         if ($row)
             return $this->buildDomainObject($row);
         else
-            throw new \Exception("No perso matching id " . $id);
+            throw new \Exception("Aucune entrée correspondante" . $id);
     }
 
     /**
-     * Saves an perso into the database.
+     * Saves an entry into the database.
      *
-     * @param \MicroCMS\Domain\Article $perso The perso to save
+     * @param \MicroCMS\Domain\Portfolio
      */
     public function save( Portfolio $portfolio ) {
         $portfolioData = array(
@@ -52,11 +52,12 @@ class PortfolioDAO extends DAO
             'port_lieu' => $portfolio->getLieu(),
             'port_date' => $portfolio->getDate(),
             'port_descriptif' => $portfolio->getDescriptif(),
-            'port_img' => $portfolio->getImg()
+            'port_img' => $portfolio->getImg(),
+            'port_thumb' => $portfolio->getThumb()
             );
 
         if ($portfolio->getId()) {
-            // The perso has already been saved : update it
+            // The portfolio has already been saved : update it
             $this->getDb()->update('t_portfolio', $portfolioData, array('port_id' => $portfolio->getId()));
         } else {
             // The portfolio has never been saved : insert it
@@ -90,6 +91,7 @@ class PortfolioDAO extends DAO
         $portfolio->setDate($row['port_date']);
         $portfolio->setDescriptif($row['port_descriptif']);
         $portfolio->setImg($row['port_img']);
+        $portfolio->setThumb($row['port_thumb']);
         return $portfolio;
     }
 }

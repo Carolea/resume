@@ -5,43 +5,50 @@ namespace MicroCMS\Domain;
 class Portfolio
 {
     /**
-     * Experience id.
+     * Portfolio id.
      *
      * @var integer
      */
     private $id;
 
     /**
-     * Experience title.
+     *Portfolio title.
      *
      * @var string
      */
     private $name;
     /**
-     * Experience title.
+     * Portfolio place.
      *
      * @var string
      */
     private $lieu;
 
     /**
-     * Experience descriptif.
+     * Portfolio descriptif.
      *
      * @var string
      */
     private $descriptif;
     /**
-     * Experience date.
+     * Portfolio date.
      *
      * @var string
      */
     private $date;
     /**
-     * Experience date.
+     * Portfolio picture.
      *
      * @var string
      */
     private $img;
+
+        /**
+     * Portfolio thumb.
+     *
+     * @var string
+     */
+    private $thumb;
 
     public function getId() {
         return $this->id;
@@ -92,6 +99,15 @@ class Portfolio
 
     public function setImg($img) {
         $this->img = $img;
+        return $this;
+    }
+
+    public function getThumb() {
+        return $this->thumb;
+    }
+
+    public function setThumb($thumb) {
+        $this->thumb = $thumb;
         return $this;
     }
 }

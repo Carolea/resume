@@ -15,7 +15,8 @@ class PortfolioType extends AbstractType
             ->add('lieu', TextType::class)
             ->add('date', TextType::class)
             ->add('descriptif', TextareaType::class)
-            ->add('img', TextType::class);
+            ->add('img', TextType::class)
+            ->add('thumb', TextType::class);
     }
 
     public function getName(){
