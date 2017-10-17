@@ -1,7 +1,0 @@
-$ git init
-$ touch .gitignore
-$ git remote add origin https://github.com/Carolea/resume.git
-
-$ git add .
-$ git commit -am'update'
-$ git status
